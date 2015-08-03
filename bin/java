@@ -39,7 +39,7 @@ install_java() {
     rm -rf "${jdkDir}"
     mkdir -p "${jdkDir}"
     jdkUrl=$(_get_jdk_download_url "${javaVersion}")
-    curl --silent --location ${jdkUrl} --output ${jdkTarball}
+    curl --verbose --location ${jdkUrl} --output ${jdkTarball}
     tar pxzf ${jdkTarball} -C "${jdkDir}"
     rm ${jdkTarball}
     echo "${javaVersion}" > "${jdkDir}"/version
