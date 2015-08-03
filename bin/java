@@ -41,7 +41,7 @@ install_java() {
     jdkUrl=$(_get_jdk_download_url "${javaVersion}")
     echo "Downloading ${jdkUrl} to ${jdkTarball}" | indent
     curl --verbose --location ${jdkUrl} --output ${jdkTarball} | indent
-    tar pxzf ${jdkTarball} -C "${jdkDir}"
+    tar pxzf ${jdkTarball} -C "${jdkDir}" --strip-components=1
     ls -al "${jdkDir}" | indent
     rm ${jdkTarball}
     echo "${javaVersion}" > "${jdkDir}"/version
