@@ -39,10 +39,13 @@ install_java() {
     rm -rf "${jdkDir}"
     mkdir -p "${jdkDir}"
     jdkUrl=$(_get_jdk_download_url "${javaVersion}")
-    curl --verbose --location ${jdkUrl} --output ${jdkTarball}
+    echo "Downloading ${jdkUrl} to ${jdkTarball}" | indent
+    curl --verbose --location ${jdkUrl} --output ${jdkTarball} | indent
+    ls -al "${jdkDir}" | indent
     tar pxzf ${jdkTarball} -C "${jdkDir}"
     rm ${jdkTarball}
     echo "${javaVersion}" > "${jdkDir}"/version
+    echo "Expecting ${javaExe} to exist..." | indent
     if [ ! -f "${javaExe}" ]; then
       error_return "Unable to retrieve the JDK."
       return 1
